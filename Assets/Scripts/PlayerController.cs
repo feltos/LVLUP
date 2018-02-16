@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Transform otherPlayer;
 
+    ParticleSystem shockParticle;
+    bool particlePlayed  = false;
+
     public bool objectInHand = false;
 
     bool textShownOnce = false;
@@ -29,6 +32,11 @@ public class PlayerController : MonoBehaviour
 
 	void Start ()
     {
+        Transform tmp = transform.Find("StartShock");
+        if(tmp != null) {
+            shockParticle = tmp.GetComponent<ParticleSystem>();
+        }
+
         body = GetComponent<Rigidbody>();
         spring = GetComponent<ConfigurableJoint>();
 	}
@@ -60,8 +68,15 @@ public class PlayerController : MonoBehaviour
         if(springed)
         {
             springTimer += Time.deltaTime;
+
+            if(Vector3.Distance(transform.position, otherPlayer.position) < 1 && shockParticle != null && !particlePlayed) {
+                shockParticle.Play();
+                particlePlayed = true;
+            }
+
             if (springTimer >= 0.2f)
             {
+                particlePlayed = false;
                 springed = false;
             }
         }
