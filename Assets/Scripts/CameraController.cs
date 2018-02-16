@@ -11,21 +11,31 @@ public class CameraController : MonoBehaviour {
 
     Vector3 originalPos;
 
+    List<PlayerController> players;
+
     // Use this for initialization
     void Start () {
         originalPos = transform.localPosition;
+        players = new List<PlayerController>();
+        players.AddRange(FindObjectsOfType<PlayerController>());
     }
-	
-	// Update is called once per frame
-	void Update () {
-        if(shakeDuration > 0) {
-            transform.localPosition = originalPos + Random.insideUnitSphere * shakeAmount;
 
-            shakeDuration -= Time.deltaTime * decreaseFactor;
-        } else {
-            shakeDuration = 0f;
-            transform.localPosition = originalPos;
-        }
+    private void FixedUpdate() {
+        Vector3 target = Vector3.Lerp(players[0].transform.position, players[1].transform.position, 0.5f);
+
+        transform.position = target + new Vector3(2.2f, 56, 20);
+    }
+
+    // Update is called once per frame
+    void Update () {
+        //if(shakeDuration > 0) {
+        //    transform.localPosition = originalPos + Random.insideUnitSphere * shakeAmount;
+
+        //    shakeDuration -= Time.deltaTime * decreaseFactor;
+        //} else {
+        //    shakeDuration = 0f;
+        //    transform.localPosition = originalPos;
+        //}
     }
 
     void AddShakeDuration(float amount) {
