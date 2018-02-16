@@ -5,7 +5,7 @@ using UnityEngine;
 public class ControllersManager : MonoBehaviour {
 
     #region Private Variable
-    int numberOfPlayer = 1;
+    int numberOfPlayer = 2;
     int numberOfGamepadConnected;
 
     bool forcedToUseKeyboardAlone;
@@ -125,6 +125,7 @@ public class ControllersManager : MonoBehaviour {
         } else {
             endOfNameInput = "_" + (indexPlayer + 1).ToString();
         }
+        
         return endOfNameInput;
     }
 

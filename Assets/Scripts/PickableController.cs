@@ -7,7 +7,7 @@ public class PickableController : MonoBehaviour
     Transform player;
     bool grabbed;
     float pickTimer;
-    [SerializeField]PlayerController playerController;
+    PlayerController playerController;
 
 	void Update ()
     {
@@ -17,7 +17,7 @@ public class PickableController : MonoBehaviour
             gameObject.GetComponent<Rigidbody>().useGravity = false;
             pickTimer += Time.deltaTime;
         }
-        if(grabbed && Input.GetButtonDown("Fire1") && pickTimer >= 1f)
+        if(grabbed && ControllersManager.Instance.GetButtonDown("Fire1", playerController.GetPlayerIndex()) && pickTimer >= 1f)
         {
             gameObject.GetComponent<BoxCollider>().isTrigger = false;
             pickTimer = 0;
@@ -30,11 +30,14 @@ public class PickableController : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Player") && Input.GetButtonDown("Fire1") && playerController.objectInHand == false)
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Player") && 
+            ControllersManager.Instance.GetButtonDown("Fire1", collision.gameObject.GetComponent<PlayerController>().GetPlayerIndex()) && 
+            collision.gameObject.GetComponent<PlayerController>().objectInHand == false)
         {
+            playerController = collision.gameObject.GetComponent<PlayerController>();
             player = collision.gameObject.transform;
             gameObject.GetComponent<BoxCollider>().isTrigger = true;
-            playerController.objectInHand = true;
+            collision.gameObject.GetComponent<PlayerController>().objectInHand = true;
             grabbed = true;
         }
     }

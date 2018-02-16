@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     bool springed;
     public bool objectInHand = false;
 
+    [SerializeField]
+    int playerIndex;
+
 	void Start ()
     {
         body = GetComponent<Rigidbody>();
@@ -22,8 +25,8 @@ public class PlayerController : MonoBehaviour
 	
 	void Update ()
     {
-        horizontal = Input.GetAxis("Horizontal");
-        vertical = Input.GetAxis("Vertical");
+        horizontal = ControllersManager.Instance.GetAxis("Horizontal", playerIndex);
+        vertical = ControllersManager.Instance.GetAxis("Vertical", playerIndex);
         movement = new Vector3(-horizontal * speed, 0, -vertical * speed);
     }
 
@@ -35,5 +38,9 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         
+    }
+
+    public int GetPlayerIndex() {
+        return playerIndex;
     }
 }

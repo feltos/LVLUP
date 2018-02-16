@@ -8,7 +8,8 @@ public class Button : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Player") && Input.GetButtonDown("Fire1"))
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Player") && 
+            ControllersManager.Instance.GetButtonDown("Fire1", collision.gameObject.GetComponent<PlayerController>().GetPlayerIndex()))
         {
             clicked = true;
         }
