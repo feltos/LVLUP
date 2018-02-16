@@ -13,6 +13,8 @@ public class CameraController : MonoBehaviour {
 
     List<PlayerController> players;
 
+    Vector3 offsetShaking;
+
     // Use this for initialization
     void Start () {
         originalPos = transform.localPosition;
@@ -23,7 +25,7 @@ public class CameraController : MonoBehaviour {
     private void FixedUpdate() {
         Vector3 target = Vector3.Lerp(players[0].transform.position, players[1].transform.position, 0.5f);
 
-        transform.position = target + new Vector3(2.2f, 56, 20);
+        transform.position = target + new Vector3(2.2f, 30, 10);
     }
 
     // Update is called once per frame

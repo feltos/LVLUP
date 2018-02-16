@@ -159,28 +159,34 @@ public class ControllersManager : MonoBehaviour {
         }
 
         if(forcedToUseKeyboardAlone && indexPlayer == 1) {
-            if(Input.GetJoystickNames().Length <= indexPlayer && Input.GetJoystickNames()[indexPlayer - 1].Contains("Wireless Controller")) {
-                if(axisName.Contains("Horizontal")) {
+            if(Input.GetJoystickNames()[indexPlayer - 1] == "Wireless Controller") {
+                if(axisName == "Horizontal") {
                     return Input.GetAxis(axisName + GetEndOfInputName(indexPlayer));
                 } else {
                     return (-1) * Input.GetAxis(axisName + GetEndOfInputName(indexPlayer));
                 }
             } else {
-                return Input.GetAxis(axisName + GetEndOfInputName(indexPlayer));
+                if(axisName == "Horizontal") {
+                    return Input.GetAxis(axisName + GetEndOfInputName(indexPlayer));
+                } else {
+                    return (-1) * Input.GetAxis(axisName + GetEndOfInputName(indexPlayer));
+                }
             }
         }
 
-        if(Input.GetJoystickNames().Length <= indexPlayer && Input.GetJoystickNames()[indexPlayer].Contains("Wireless Controller")) {
-            if(axisName.Contains("Horizontal")) {
+        if(Input.GetJoystickNames()[indexPlayer] == "Wireless Controller") {
+            if(axisName == "Horizontal") {
+                return Input.GetAxis(axisName + GetEndOfInputName(indexPlayer));
+            } else {
+                return  Input.GetAxis(axisName + GetEndOfInputName(indexPlayer));
+            }
+        } else {
+            if(axisName == "Horizontal") {
                 return Input.GetAxis(axisName + GetEndOfInputName(indexPlayer));
             } else {
                 return (-1) * Input.GetAxis(axisName + GetEndOfInputName(indexPlayer));
             }
-        } else {
-            return Input.GetAxis(axisName + GetEndOfInputName(indexPlayer));
         }
-
-        return Input.GetAxis(axisName + GetEndOfInputName(indexPlayer));
     }
 
     public float GetAxisRaw(string axisName, int indexPlayer = 0) {
