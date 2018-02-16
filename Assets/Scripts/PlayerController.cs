@@ -10,14 +10,18 @@ public class PlayerController : MonoBehaviour
     Rigidbody body;
     [SerializeField]
     float speed;
+    SpringJoint spring;
+    bool springed;
 
 	void Start ()
     {
         body = GetComponent<Rigidbody>();
+        spring = GetComponent<SpringJoint>();
 	}
 	
 	void Update ()
     {
+        Debug.Log(springed);
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
         movement = new Vector3(-horizontal * speed, 0, -vertical * speed);
@@ -30,6 +34,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-   
+        
     }
 }
