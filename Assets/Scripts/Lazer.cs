@@ -5,7 +5,6 @@ using UnityEngine;
 public class Lazer : MonoBehaviour {
 
 	private LineRenderer line ;
-	private float multiplier;
 	private float length;
 	public float maxLength;
 
@@ -14,11 +13,8 @@ public class Lazer : MonoBehaviour {
 	void Start () {
 		line = gameObject.GetComponent<LineRenderer> ();
 
-		//Multiplicateur de valeurs
-		Vector3 vector = transform.localScale;
-		multiplier = vector.z;
 		//On définit la longueur du rayon de départ
-		vector = new Vector3 (0, 0, maxLength/multiplier);
+		Vector3 vector = new Vector3 (0, 0, maxLength);
 		line.SetPosition (1, vector);
 
 
@@ -32,8 +28,9 @@ public class Lazer : MonoBehaviour {
 
 	private void setLength(){
 		RaycastHit hit;
-		if (Physics.Raycast (line.GetPosition (0), Vector3.forward, out hit)) {
-			line.SetPosition (1, new Vector3 (0, 0, hit.distance/multiplier));
+		Debug.DrawRay (transform.position, transform.forward, Color.green, 120);
+		if (Physics.Raycast (transform.position, transform.forward, out hit)) {
+			line.SetPosition (1, new Vector3 (0, 0, hit.distance));
 			if (hit.collider.tag == "Receiver") {
 				print ("true");
 			
