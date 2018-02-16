@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     {
         horizontal = ControllersManager.Instance.GetAxis("Horizontal", playerIndex);
         vertical = ControllersManager.Instance.GetAxis("Vertical", playerIndex);
-        movement = new Vector3(-horizontal * speed, 0, -vertical * speed);
+        movement = new Vector3(-horizontal * speed, 0, vertical * speed);
 
         if(textShownOnce && !textHideOnce)
         {
@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
         textShownOnce = false;
         textHideOnce = false;
 
-        if(Vector3.Distance(transform.position,otherPlayer.position) >= 3)
+        if(Vector3.Distance(transform.position,otherPlayer.position) >= 3.3)
         {
             springed = true;
         }

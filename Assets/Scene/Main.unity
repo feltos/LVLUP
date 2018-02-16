@@ -544,6 +544,11 @@ Prefab:
       propertyPath: otherPlayer
       value: 
       objectReference: {fileID: 713184333}
+    - target: {fileID: 54496307317804396, guid: 79e967b24385961459eaca584f5f1db3,
+        type: 2}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 145335153125055186, guid: 79e967b24385961459eaca584f5f1db3, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 79e967b24385961459eaca584f5f1db3, type: 2}
