@@ -286,6 +286,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1181622307605564, guid: 299a1543a6b7680469bf337978749c6f,
     type: 2}
   m_PrefabInternal: {fileID: 1331162504}
+--- !u!114 &615565165 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114639957923968340, guid: 299a1543a6b7680469bf337978749c6f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1331162504}
+  m_Script: {fileID: 11500000, guid: 99acf1af1b149864fb6a9fde633733a7, type: 3}
 --- !u!1001 &790458691
 Prefab:
   m_ObjectHideFlags: 0
@@ -501,6 +507,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114027852828876272, guid: 299a1543a6b7680469bf337978749c6f,
+        type: 2}
+      propertyPath: doors.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4253117568806466, guid: 299a1543a6b7680469bf337978749c6f, type: 2}
       propertyPath: m_LocalPosition.x
       value: -0.018459797
@@ -556,7 +567,7 @@ Prefab:
     - target: {fileID: 114027852828876272, guid: 299a1543a6b7680469bf337978749c6f,
         type: 2}
       propertyPath: state
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114027852828876272, guid: 299a1543a6b7680469bf337978749c6f,
         type: 2}
@@ -589,6 +600,16 @@ Prefab:
       propertyPath: dalle
       value: 
       objectReference: {fileID: 943966943}
+    - target: {fileID: 114639957923968340, guid: 299a1543a6b7680469bf337978749c6f,
+        type: 2}
+      propertyPath: open
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114027852828876272, guid: 299a1543a6b7680469bf337978749c6f,
+        type: 2}
+      propertyPath: doors.Array.data[0]
+      value: 
+      objectReference: {fileID: 615565165}
     m_RemovedComponents:
     - {fileID: 114473550570303778, guid: 299a1543a6b7680469bf337978749c6f, type: 2}
     - {fileID: 114228553731998748, guid: 299a1543a6b7680469bf337978749c6f, type: 2}
@@ -850,6 +871,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1731537894 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1024291094609744, guid: 299a1543a6b7680469bf337978749c6f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1331162504}
+--- !u!65 &1731537895
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1731537894}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.4, y: 2.76, z: 9.8}
+  m_Center: {x: 0, y: 1.38, z: 0}
 --- !u!1001 &1982167374
 Prefab:
   m_ObjectHideFlags: 0

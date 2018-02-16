@@ -6,11 +6,15 @@ public class RoomManager : MonoBehaviour
 {
 
     [SerializeField]
-    GameObject door;
-    [SerializeField]Dalle dalle;
+    List<DoorController> doors;
+    [SerializeField]
+    Dalle dalle;
 
     [SerializeField]
     Button button;
+
+    bool enterRoom = false;
+    int playerInRoom = 0;
 
     public enum State
     {
@@ -19,15 +23,21 @@ public class RoomManager : MonoBehaviour
         BUTTON,
         DALLE
     }
+
     public State state = State.NO_ONE;
 
 	void Start ()
     {
-		
+
 	}
 	
 	void Update ()
     {
+        if(playerInRoom == 2 && !enterRoom) {
+            enterRoom = true;
+            CloseDoor();
+        }
+
 		switch(state)
         {
             case State.NO_ONE:
@@ -37,22 +47,46 @@ public class RoomManager : MonoBehaviour
                 break;
 
             case State.BUTTON:
-                if(button.GetClicked())
+                if(button.GetClicked() && enterRoom)
                 {
-                    door.transform.eulerAngles = new Vector3(0, -90);
+                    OpenDoor();
                 }
                 break;
 
             case State.DALLE: 
-                if(dalle.GetPressed())
+                if(dalle.GetPressed() && enterRoom)
                 {
-                    door.transform.eulerAngles = new Vector3(0, -90);
+                    OpenDoor();
                 }
-                if(!dalle.GetPressed())
+                if(!dalle.GetPressed() && enterRoom)
                 {
-                    door.transform.eulerAngles = new Vector3(0, 0);
+                    CloseDoor();
                 }
                 break;
         }
 	}
+
+    void OpenDoor() {
+        foreach(DoorController door in doors) {
+            door.OpenDoor();
+        }
+    }
+
+    void CloseDoor() {
+        foreach(DoorController door in doors) {
+            door.CloseDoor();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if(other.tag == "Player") {
+            playerInRoom++;
+        }
+    }
+
+    private void OnTriggerExit(Collider other) {
+        if(other.tag == "Player") {
+            playerInRoom--;
+        }
+    }
 }
