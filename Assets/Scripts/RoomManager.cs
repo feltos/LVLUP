@@ -23,7 +23,8 @@ public class RoomManager : MonoBehaviour
         NO_ONE,
         KEY,
         BUTTON,
-        DALLE
+        DALLE,
+		LAZER
     }
 
     public State state = State.NO_ONE;
