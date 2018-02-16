@@ -154,7 +154,15 @@ public class ControllersManager : MonoBehaviour {
     }
 
     public float GetAxis(string axisName, int indexPlayer = 0) {
-        return Input.GetAxis(axisName + GetEndOfInputName(indexPlayer));
+        if(Input.GetJoystickNames()[indexPlayer] == "Wireless Controller") {
+            if(axisName == "Horizontal") {
+                return Input.GetAxis(axisName + GetEndOfInputName(indexPlayer));
+            } else {
+                return (-1) * Input.GetAxis(axisName + GetEndOfInputName(indexPlayer));
+            }
+        } else {
+            return Input.GetAxis(axisName + GetEndOfInputName(indexPlayer));
+        }
     }
 
     public float GetAxisRaw(string axisName, int indexPlayer = 0) {

@@ -46,7 +46,7 @@ public class RoomManager : MonoBehaviour
 
         if(TimerController.Instance.IsRunning()) {
             if(TimerController.Instance.HasFinished()) {
-                Debug.Log("YOU LOSE SUCKER");
+                GameManager.Instance.Lose();
             }
 
             if(enterRoom && playerInRoom == 0) {
