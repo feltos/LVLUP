@@ -22,7 +22,6 @@ public class PlayerController : MonoBehaviour
 	
 	void Update ()
     {
-        Debug.Log(springed);
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
         movement = new Vector3(-horizontal * speed, 0, -vertical * speed);
