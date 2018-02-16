@@ -781,7 +781,7 @@ Prefab:
     - target: {fileID: 114027852828876272, guid: 299a1543a6b7680469bf337978749c6f,
         type: 2}
       propertyPath: state
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114027852828876272, guid: 299a1543a6b7680469bf337978749c6f,
         type: 2}
@@ -1215,47 +1215,47 @@ Prefab:
     - target: {fileID: 120492927841991308, guid: 7fd75d40d548de44b98e7de2bc233e02,
         type: 2}
       propertyPath: m_Positions.Array.data[1].x
-      value: -1.415755
+      value: -1.4092957
       objectReference: {fileID: 0}
     - target: {fileID: 120492927841991308, guid: 7fd75d40d548de44b98e7de2bc233e02,
         type: 2}
       propertyPath: m_Positions.Array.data[1].y
-      value: 0.7608539
+      value: 0.67859733
       objectReference: {fileID: 0}
     - target: {fileID: 120492927841991308, guid: 7fd75d40d548de44b98e7de2bc233e02,
         type: 2}
       propertyPath: m_Positions.Array.data[1].z
-      value: -2.0061412
+      value: -2.0068557
       objectReference: {fileID: 0}
     - target: {fileID: 120492927841991308, guid: 7fd75d40d548de44b98e7de2bc233e02,
         type: 2}
       propertyPath: m_Positions.Array.data[2].x
-      value: -0.9682854
+      value: -0.9591504
       objectReference: {fileID: 0}
     - target: {fileID: 120492927841991308, guid: 7fd75d40d548de44b98e7de2bc233e02,
         type: 2}
       propertyPath: m_Positions.Array.data[2].y
-      value: 0.8256419
+      value: 0.7093135
       objectReference: {fileID: 0}
     - target: {fileID: 120492927841991308, guid: 7fd75d40d548de44b98e7de2bc233e02,
         type: 2}
       propertyPath: m_Positions.Array.data[2].z
-      value: -2.0556388
+      value: -2.0566492
       objectReference: {fileID: 0}
     - target: {fileID: 120492927841991308, guid: 7fd75d40d548de44b98e7de2bc233e02,
         type: 2}
       propertyPath: m_Positions.Array.data[3].x
-      value: -0.516255
+      value: -0.5097956
       objectReference: {fileID: 0}
     - target: {fileID: 120492927841991308, guid: 7fd75d40d548de44b98e7de2bc233e02,
         type: 2}
       propertyPath: m_Positions.Array.data[3].y
-      value: 0.83235383
+      value: 0.7500973
       objectReference: {fileID: 0}
     - target: {fileID: 120492927841991308, guid: 7fd75d40d548de44b98e7de2bc233e02,
         type: 2}
       propertyPath: m_Positions.Array.data[3].z
-      value: -2.105641
+      value: -2.1063554
       objectReference: {fileID: 0}
     - target: {fileID: 120492927841991308, guid: 7fd75d40d548de44b98e7de2bc233e02,
         type: 2}

@@ -38,6 +38,7 @@ public class RoomManager : MonoBehaviour
     {
         if(playerInRoom == 2 && !enterRoom) {
             enterRoom = true;
+            AudioManager.Instance.CloseDoor();
             CloseDoor();
         }
 
@@ -67,7 +68,6 @@ public class RoomManager : MonoBehaviour
             case State.BUTTON:
                 if(button.GetClicked() && enterRoom)
                 {
-                    AudioManager.Instance.ButtonPress();
                     OpenDoor();
                 }
                 break;
