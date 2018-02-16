@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float speed;
 
-    float horizontal;
-    float vertical;
+    public float horizontal;
+    public float vertical;
     Vector3 movement;
     Rigidbody body;
     ConfigurableJoint spring;
