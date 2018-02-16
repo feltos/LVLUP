@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     float speed;
     SpringJoint spring;
     bool springed;
+    public bool objectInHand = false;
 
 	void Start ()
     {
