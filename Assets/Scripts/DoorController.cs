@@ -6,7 +6,11 @@ public class DoorController : MonoBehaviour
 {
     bool open = false;
     float doorCloseTimer;
-    [SerializeField]RoomManager roomManager;
+    RoomManager roomManager;
+
+    private void Start() {
+        roomManager = transform.parent.gameObject.GetComponent<RoomManager>();
+    }
 
     void Update()
     {
