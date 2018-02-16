@@ -41,10 +41,12 @@ public class DoorController : MonoBehaviour
     }
 
     public void OpenDoor() {
+        AudioManager.Instance.OpenDoor();
         transform.eulerAngles = new Vector3(0, -90);
     }
 
-    public void CloseDoor() { 
+    public void CloseDoor() {
+        AudioManager.Instance.CloseDoor();
         transform.eulerAngles = new Vector3(0, 0);
     }
 }

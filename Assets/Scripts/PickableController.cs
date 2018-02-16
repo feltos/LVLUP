@@ -45,10 +45,15 @@ public class PickableController : MonoBehaviour
             ControllersManager.Instance.GetButtonDown("Fire1", collision.gameObject.GetComponent<PlayerController>().GetPlayerIndex()) && 
             collision.gameObject.GetComponent<PlayerController>().objectInHand == false)
         {
+            if(this.gameObject.layer == LayerMask.NameToLayer("Key"))
+            {
+                AudioManager.Instance.PickKey();
+            }
             playerController = collision.gameObject.GetComponent<PlayerController>();
             player = collision.gameObject.transform;
             gameObject.GetComponent<BoxCollider>().isTrigger = true;
             collision.gameObject.GetComponent<PlayerController>().objectInHand = true;
+            AudioManager.Instance.PickObject();
             grabbed = true;
         }
     }
