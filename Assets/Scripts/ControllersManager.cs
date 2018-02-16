@@ -154,7 +154,7 @@ public class ControllersManager : MonoBehaviour {
     }
 
     public float GetAxis(string axisName, int indexPlayer = 0) {
-        if(Input.GetJoystickNames()[indexPlayer] == "Wireless Controller") {
+        if(Input.GetJoystickNames().Length >= indexPlayer && Input.GetJoystickNames()[indexPlayer] == "Wireless Controller") {
             if(axisName == "Horizontal") {
                 return Input.GetAxis(axisName + GetEndOfInputName(indexPlayer));
             } else {
