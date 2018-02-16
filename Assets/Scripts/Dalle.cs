@@ -7,14 +7,6 @@ public class Dalle : MonoBehaviour
     public bool pressed = false;
     bool pressedByPickable = false;
 
-    private void OnCollisionStay(Collision collision)
-    {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Pickable"))
-        {
-            //pressed = true;
-        }
-    }
-
     private void OnCollisionEnter(Collision collision) {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Pickable")) {
             pressed = true;
