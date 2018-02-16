@@ -9,11 +9,13 @@ public class RoomManager : MonoBehaviour
     List<DoorController> doors;
     [SerializeField]
     Dalle dalle;
-
+    [SerializeField]
+    float timeForFinishingRoom;
     [SerializeField]
     Button button;
 
     bool enterRoom = false;
+    bool isFinished = false;
     int playerInRoom = 0;
 
     public enum State
@@ -36,6 +38,20 @@ public class RoomManager : MonoBehaviour
         if(playerInRoom == 2 && !enterRoom) {
             enterRoom = true;
             CloseDoor();
+        }
+
+        if(enterRoom && !TimerController.Instance.IsRunning()) {
+            TimerController.Instance.SetTimeForLevel(timeForFinishingRoom); 
+        }
+
+        if(TimerController.Instance.IsRunning()) {
+            if(TimerController.Instance.HasFinished()) {
+                Debug.Log("YOU LOSE SUCKER");
+            }
+
+            if(enterRoom && playerInRoom == 0) {
+                TimerController.Instance.ResetTimer();
+            }
         }
 
 		switch(state)
