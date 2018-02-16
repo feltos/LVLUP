@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4132161227804496}
   - component: {fileID: 20594696399577172}
+  - component: {fileID: 114132259868992494}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -84,7 +85,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1819165862952882}
   m_LocalRotation: {x: -0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: -1.86, y: 0.655, z: -1.957}
+  m_LocalPosition: {x: -0.958, y: 0.51100004, z: -2.791}
   m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children:
   - {fileID: 4132161227804496}
@@ -98,7 +99,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1633436112321302}
-  m_LocalRotation: {x: 0.23080097, y: 0.6764878, z: 0.31198946, w: 0.6259056}
+  m_LocalRotation: {x: 0.24528836, y: -0.70977867, z: -0.29364184, w: 0.59145784}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -168,6 +169,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.0499997, y: 8.699999, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114132259868992494
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1004072884929760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a03fb63afd4755f4085e3f0fa897ccdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeDuration: 0
+  shakeAmount: 0.1
+  decreaseFactor: 1
 --- !u!114 &114150876511838876
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -182,6 +197,8 @@ MonoBehaviour:
   informationnalText: {fileID: 0}
   playerIndex: 0
   speed: 5
+  horizontal: 0
+  vertical: 0
   otherPlayer: {fileID: 0}
   objectInHand: 0
 --- !u!114 &114359896263892532
@@ -237,11 +254,11 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: -1.86, y: 0.655, z: -1.957}
-  - {x: -1.4111305, y: 0.7019646, z: -2.0066526}
-  - {x: -0.96174544, y: 0.7423598, z: -2.0563622}
-  - {x: -0.5116306, y: 0.77346456, z: -2.1061523}
-  - {x: -0.06099999, y: 0.798, z: -2.156}
+  - {x: -0.958, y: 0.51100004, z: -2.791}
+  - {x: -1.243485, y: 0.4930502, z: -2.843247}
+  - {x: -1.5289788, y: 0.48546863, z: -2.8954961}
+  - {x: -1.814485, y: 0.4925501, z: -2.9477472}
+  - {x: -2.1, y: 0.51, z: -3}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 0.17

@@ -38,6 +38,7 @@ public class RoomManager : MonoBehaviour
     {
         if(playerInRoom == 2 && !enterRoom) {
             enterRoom = true;
+            AudioManager.Instance.CloseDoor();
             CloseDoor();
         }
 
@@ -74,6 +75,7 @@ public class RoomManager : MonoBehaviour
             case State.DALLE: 
                 if(dalle.GetPressed() && enterRoom)
                 {
+                    AudioManager.Instance.DallePresses();
                     OpenDoor();
                 }
                 if(!dalle.GetPressed() && enterRoom)

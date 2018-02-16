@@ -154,14 +154,38 @@ public class ControllersManager : MonoBehaviour {
     }
 
     public float GetAxis(string axisName, int indexPlayer = 0) {
-        if(Input.GetJoystickNames().Length >= indexPlayer && Input.GetJoystickNames()[indexPlayer] == "Wireless Controller") {
+        if(forcedToUseKeyboardAlone && indexPlayer == 0) {
+            return Input.GetAxis(axisName + "_0");
+        }
+
+        if(forcedToUseKeyboardAlone && indexPlayer == 1) {
+            if(Input.GetJoystickNames()[indexPlayer - 1] == "Wireless Controller") {
+                if(axisName == "Horizontal") {
+                    return Input.GetAxis(axisName + GetEndOfInputName(indexPlayer));
+                } else {
+                    return (-1) * Input.GetAxis(axisName + GetEndOfInputName(indexPlayer));
+                }
+            } else {
+                if(axisName == "Horizontal") {
+                    return Input.GetAxis(axisName + GetEndOfInputName(indexPlayer));
+                } else {
+                    return (-1) * Input.GetAxis(axisName + GetEndOfInputName(indexPlayer));
+                }
+            }
+        }
+
+        if(Input.GetJoystickNames()[indexPlayer] == "Wireless Controller") {
+            if(axisName == "Horizontal") {
+                return Input.GetAxis(axisName + GetEndOfInputName(indexPlayer));
+            } else {
+                return  Input.GetAxis(axisName + GetEndOfInputName(indexPlayer));
+            }
+        } else {
             if(axisName == "Horizontal") {
                 return Input.GetAxis(axisName + GetEndOfInputName(indexPlayer));
             } else {
                 return (-1) * Input.GetAxis(axisName + GetEndOfInputName(indexPlayer));
             }
-        } else {
-            return Input.GetAxis(axisName + GetEndOfInputName(indexPlayer));
         }
     }
 

@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float speed;
 
-    float horizontal;
-    float vertical;
+    public float horizontal;
+    public float vertical;
     Vector3 movement;
     Rigidbody body;
     ConfigurableJoint spring;
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     {
         horizontal = ControllersManager.Instance.GetAxis("Horizontal", playerIndex);
         vertical = ControllersManager.Instance.GetAxis("Vertical", playerIndex);
-        movement = new Vector3(-horizontal * speed, 0, vertical * speed);
+        movement = new Vector3(-horizontal * speed, 0, -vertical * speed);
 
         if(textShownOnce && !textHideOnce)
         {
@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
         if(Vector3.Distance(transform.position,otherPlayer.position) >= 3.3)
         {
             springed = true;
+            FindObjectOfType<CameraController>().AddShakeDuration(0.1f);
         }
 
         if(springed)

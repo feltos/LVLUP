@@ -26,6 +26,7 @@ public class DoorController : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player") && roomManager.state == RoomManager.State.NO_ONE)
         {
+            AudioManager.Instance.OpenDoor();
             OpenDoor();
             open = true;
         }
@@ -35,16 +36,16 @@ public class DoorController : MonoBehaviour
     {
         if(other.gameObject.layer == LayerMask.NameToLayer("Key") && roomManager.state == RoomManager.State.KEY)
         {
+            AudioManager.Instance.OpenDoor();
             OpenDoor(); 
             Destroy(other.gameObject);
         }
     }
-
-    public void OpenDoor() {
+    public void OpenDoor() {      
         transform.eulerAngles = new Vector3(0, -90);
     }
 
-    public void CloseDoor() { 
+    public void CloseDoor() {
         transform.eulerAngles = new Vector3(0, 0);
     }
 }
