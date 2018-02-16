@@ -17,7 +17,6 @@ public class CameraController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        originalPos = transform.localPosition;
         players = new List<PlayerController>();
         players.AddRange(FindObjectsOfType<PlayerController>());
     }
@@ -25,22 +24,25 @@ public class CameraController : MonoBehaviour {
     private void FixedUpdate() {
         Vector3 target = Vector3.Lerp(players[0].transform.position, players[1].transform.position, 0.5f);
 
-        transform.position = target + new Vector3(2.2f, 30, 10);
+        transform.position = target + new Vector3(2.2f, 25, 10);
+
+        if(shakeDuration <= 0) {
+            originalPos = transform.localPosition;
+        }
     }
 
     // Update is called once per frame
     void Update () {
-        //if(shakeDuration > 0) {
-        //    transform.localPosition = originalPos + Random.insideUnitSphere * shakeAmount;
+        if(shakeDuration > 0) {
+            transform.position = transform.position + Random.insideUnitSphere * shakeAmount;
 
-        //    shakeDuration -= Time.deltaTime * decreaseFactor;
-        //} else {
-        //    shakeDuration = 0f;
-        //    transform.localPosition = originalPos;
-        //}
+            shakeDuration -= Time.deltaTime * decreaseFactor;
+        } else {
+            shakeDuration = 0f;
+        }
     }
 
-    void AddShakeDuration(float amount) {
+    public void AddShakeDuration(float amount) {
         shakeDuration += amount;
     }
 }

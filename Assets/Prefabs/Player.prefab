@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shakeDuration: 0
-  shakeAmount: 0.7
+  shakeAmount: 0.1
   decreaseFactor: 1
 --- !u!114 &114150876511838876
 MonoBehaviour:
@@ -197,6 +197,8 @@ MonoBehaviour:
   informationnalText: {fileID: 0}
   playerIndex: 0
   speed: 5
+  horizontal: 0
+  vertical: 0
   otherPlayer: {fileID: 0}
   objectInHand: 0
 --- !u!114 &114359896263892532
@@ -253,9 +255,9 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: -0.958, y: 0.51100004, z: -2.791}
-  - {x: -1.2435045, y: 0.5161344, z: -2.8432508}
-  - {x: -1.5290065, y: 0.51811457, z: -2.8955011}
-  - {x: -1.8145045, y: 0.5156343, z: -2.947751}
+  - {x: -1.243485, y: 0.4930502, z: -2.843247}
+  - {x: -1.5289788, y: 0.48546863, z: -2.8954961}
+  - {x: -1.814485, y: 0.4925501, z: -2.9477472}
   - {x: -2.1, y: 0.51, z: -3}
   m_Parameters:
     serializedVersion: 2

@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
         if(Vector3.Distance(transform.position,otherPlayer.position) >= 3.3)
         {
             springed = true;
+            FindObjectOfType<CameraController>().AddShakeDuration(0.1f);
         }
 
         if(springed)
