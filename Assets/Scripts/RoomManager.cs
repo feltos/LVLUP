@@ -46,7 +46,8 @@ public class RoomManager : MonoBehaviour
         }
 
         if(TimerController.Instance.IsRunning()) {
-            if(TimerController.Instance.HasFinished()) {
+            if(TimerController.Instance.HasFinished())
+            {
                 GameManager.Instance.Lose();
             }
 

@@ -16,8 +16,11 @@ public class PlayerController : MonoBehaviour
     float vertical;
     Vector3 movement;
     Rigidbody body;
-    SpringJoint spring;
+    ConfigurableJoint spring;
     bool springed;
+    float springTimer;
+    [SerializeField]
+    Transform otherPlayer;
 
     public bool objectInHand = false;
 
@@ -27,48 +30,69 @@ public class PlayerController : MonoBehaviour
 	void Start ()
     {
         body = GetComponent<Rigidbody>();
-        spring = GetComponent<SpringJoint>();
+        spring = GetComponent<ConfigurableJoint>();
 	}
 	
 	void Update ()
     {
         horizontal = ControllersManager.Instance.GetAxis("Horizontal", playerIndex);
         vertical = ControllersManager.Instance.GetAxis("Vertical", playerIndex);
-        movement = new Vector3(-horizontal * speed, 0, -vertical * speed);
+        movement = new Vector3(-horizontal * speed, 0, vertical * speed);
 
-        if(textShownOnce && !textHideOnce) {
+        if(textShownOnce && !textHideOnce)
+        {
             informationnalText.text = "You can interact with this object";
-        }else if(textHideOnce && !textShownOnce) {
+        }
+        else if(textHideOnce && !textShownOnce)
+        {
             informationnalText.text = "";
         }
 
         textShownOnce = false;
         textHideOnce = false;
+
+        if(Vector3.Distance(transform.position,otherPlayer.position) >= 3.3)
+        {
+            springed = true;
+        }
+
+        if(springed)
+        {
+            springTimer += Time.deltaTime;
+            if (springTimer >= 0.2f)
+            {
+                springed = false;
+            }
+        }
     }
 
     void FixedUpdate()
     {
-        body.velocity = movement;
+        if(!springed)
+        {
+            body.velocity = movement;
+            springTimer = 0.0f;
+        }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        
-    }
-
-    private void OnCollisionEnter(Collision collision) {
-        if(collision.gameObject.tag == "Interactive") {
+        if(collision.gameObject.tag == "Interactive")
+        {
             textShownOnce = true;
         }
     }
 
-    private void OnCollisionExit(Collision collision) {
-        if(collision.gameObject.tag == "Interactive") {
+    private void OnCollisionExit(Collision collision)
+    {
+        if(collision.gameObject.tag == "Interactive")
+        {
             textHideOnce = true;
         }
     }
 
-    public int GetPlayerIndex() {
+    public int GetPlayerIndex()
+    {
         return playerIndex;
     }
 }
