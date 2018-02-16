@@ -11,6 +11,7 @@ public class Button : MonoBehaviour
         if(collision.gameObject.layer == LayerMask.NameToLayer("Player") && 
             ControllersManager.Instance.GetButtonDown("Fire1", collision.gameObject.GetComponent<PlayerController>().GetPlayerIndex()))
         {
+            AudioManager.Instance.ButtonPress();
             clicked = true;
         }
     }
