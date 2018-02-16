@@ -8,19 +8,16 @@ public class RoomManager : MonoBehaviour
     [SerializeField]
     GameObject door;
     [SerializeField]Dalle dalle;
-    [SerializeField]int dalleCount;
-    [SerializeField]int nmbDalle;
 
     [SerializeField]
-    GameObject button;
+    Button button;
 
     public enum State
     {
         NO_ONE,
         KEY,
         BUTTON,
-        DALLE,
-        SYMBOLS
+        DALLE
     }
     public State state = State.NO_ONE;
 
@@ -39,29 +36,22 @@ public class RoomManager : MonoBehaviour
             case State.KEY:
                 break;
 
-            case State.BUTTON:   
+            case State.BUTTON:
+                if(button.GetClicked())
+                {
+                    door.transform.eulerAngles = new Vector3(0, -90);
+                }
                 break;
 
             case State.DALLE: 
                 if(dalle.GetPressed())
                 {
-                    dalleCount++;
+                    door.transform.eulerAngles = new Vector3(0, -90);
                 }
                 if(!dalle.GetPressed())
                 {
-                    
-                }
-                if(dalleCount == nmbDalle)
-                {
-                    door.transform.eulerAngles = new Vector3(0, -90);
-                }
-                else
-                {
                     door.transform.eulerAngles = new Vector3(0, 0);
                 }
-                break;
-
-            case State.SYMBOLS:
                 break;
         }
 	}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PickableController : MonoBehaviour
 {
-    GameObject player;
+    Transform player;
     bool grabbed;
     float pickTimer;
     [SerializeField]PlayerController playerController;
@@ -32,6 +32,7 @@ public class PickableController : MonoBehaviour
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Player") && Input.GetButtonDown("Fire1") && playerController.objectInHand == false)
         {
+            player = collision.gameObject.transform;
             gameObject.GetComponent<BoxCollider>().isTrigger = true;
             playerController.objectInHand = true;
             grabbed = true;
