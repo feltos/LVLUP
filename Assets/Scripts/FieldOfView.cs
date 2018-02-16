@@ -25,7 +25,6 @@ public class FieldOfView:MonoBehaviour {
         viewMesh = new Mesh {
             name = "View Mesh"
         };
-        Debug.Log(viewMesh);
         viewMeshFilter.mesh = viewMesh;
     }
 
@@ -33,12 +32,27 @@ public class FieldOfView:MonoBehaviour {
         DrawFieldOfView();
     }
 
+    private void Update() {
+        Collider[] targetsInViewRadius = Physics.OverlapSphere (transform.position, viewRadius, targetMask);
+
+        for(int i = 0;i < targetsInViewRadius.Length;i++) {
+            Transform target = targetsInViewRadius[i].transform;
+            Vector3 dirToTarget = (target.position - transform.position).normalized;
+            if(Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2) {
+                float dstToTarget = Vector3.Distance (transform.position, target.position);
+                if(!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask)) {
+                    GameManager.Instance.Lose();
+                }
+            }
+        }
+    }
+
     void DrawFieldOfView() {
         int stepCount = Mathf.RoundToInt(viewAngle * meshResolution);
         float stepAngleSize = viewAngle / stepCount;
         List<Vector3> viewPoints = new List<Vector3> ();
         ViewCastInfo oldViewCast = new ViewCastInfo ();
-        for(int i = 0;i <= stepCount;i++) {
+        for(int i = 0; i <= stepCount; i++) {
             float angle = transform.eulerAngles.y - viewAngle / 2 + stepAngleSize * i;
             ViewCastInfo newViewCast = ViewCast (angle);
 
@@ -53,10 +67,8 @@ public class FieldOfView:MonoBehaviour {
                         viewPoints.Add(edge.pointB);
                     }
                 }
-
             }
-
-
+            
             viewPoints.Add(newViewCast.point);
             oldViewCast = newViewCast;
         }
@@ -66,7 +78,7 @@ public class FieldOfView:MonoBehaviour {
         int[] triangles = new int[(vertexCount-2) * 3];
 
         vertices[0] = Vector3.zero;
-        for(int i = 0;i < vertexCount - 1;i++) {
+        for(int i = 0; i < vertexCount - 1; i++) {
             vertices[i + 1] = transform.InverseTransformPoint(viewPoints[i]);
 
             if(i < vertexCount - 2) {
