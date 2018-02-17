@@ -30,7 +30,9 @@ public class PlayerController : MonoBehaviour
     bool textShownOnce = false;
     bool textHideOnce = false;
 
-	void Start ()
+    Animator animatorController;
+
+    void Start ()
     {
         Transform tmp = transform.Find("StartShock");
         if(tmp != null) {
@@ -39,12 +41,18 @@ public class PlayerController : MonoBehaviour
 
         body = GetComponent<Rigidbody>();
         spring = GetComponent<ConfigurableJoint>();
-	}
+
+        animatorController = GetComponent<Animator>();
+        if(animatorController == null) {
+            Debug.LogError("A Animatore is missing");
+        }
+    }
 	
 	void Update ()
     {
         horizontal = ControllersManager.Instance.GetAxis("Horizontal", playerIndex);
         vertical = ControllersManager.Instance.GetAxis("Vertical", playerIndex);
+
         movement = new Vector3(-horizontal * speed, 0, -vertical * speed);
 
         if(textShownOnce && !textHideOnce)
@@ -88,6 +96,33 @@ public class PlayerController : MonoBehaviour
         {
             body.velocity = movement;
             springTimer = 0.0f;
+        }
+
+        //Animation
+        float hor = (-1)*body.velocity.x;
+        float ver = (-1)*body.velocity.z;
+        animatorController.SetBool("LookUp", false);
+        animatorController.SetBool("LookDown", false);
+        animatorController.SetBool("LookLeft", false);
+        animatorController.SetBool("LookRight", false);
+
+        if(hor == 0 && ver == 0) {
+            animatorController.SetBool("Idle", true);
+        } else {
+            animatorController.SetBool("Idle", false);
+            if(Mathf.Abs(hor) < Mathf.Abs(ver)) {
+                if(ver > 0) {
+                    animatorController.SetBool("LookUp", true);
+                } else {
+                    animatorController.SetBool("LookDown", true);
+                }
+            } else {
+                if(hor < 0) {
+                    animatorController.SetBool("LookLeft", true);
+                } else {
+                    animatorController.SetBool("LookRight", true);
+                }
+            }
         }
     }
 
