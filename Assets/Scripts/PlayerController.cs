@@ -32,6 +32,9 @@ public class PlayerController : MonoBehaviour
 
     Animator animatorController;
 
+    Vector3 curPos, lastPos;
+    bool hasMoved;
+
     void Start ()
     {
         Transform tmp = transform.Find("StartShock");
@@ -88,6 +91,18 @@ public class PlayerController : MonoBehaviour
                 springed = false;
             }
         }
+
+        curPos = transform.position;
+        if(curPos == lastPos) {
+            hasMoved = false;
+        } else {
+            hasMoved = true;
+        }
+        lastPos = curPos;
+    }
+
+    public bool HasMoved() {
+        return hasMoved;
     }
 
     void FixedUpdate()
