@@ -9,14 +9,18 @@ public class Dalle : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision) {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Pickable")) {
-            pressed = true;
             pressedByPickable = true;
-            AudioManager.Instance.DallePresses();
+            if(!pressed) {
+                pressed = true;
+                AudioManager.Instance.DallePresses();
+            }
         }
 
         if(collision.gameObject.layer == LayerMask.NameToLayer("Player")) {
-            pressed = true;
-            AudioManager.Instance.DallePresses();
+            if(!pressed) { 
+                pressed = true;
+                AudioManager.Instance.DallePresses();
+            }
         }
     }
 

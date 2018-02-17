@@ -11,7 +11,7 @@ public class DoorController : MonoBehaviour
     RoomManager roomManager;
 
     private void Start() {
-        roomManager = transform.parent.gameObject.GetComponent<RoomManager>();
+        roomManager = transform.parent.transform.parent.gameObject.GetComponent<RoomManager>();
 
         if(open) {
             OpenDoor();
@@ -22,13 +22,18 @@ public class DoorController : MonoBehaviour
     {
         
     }
+
+    public void SetRoomManager(RoomManager tmp) {
+        roomManager = tmp;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player") && roomManager.state == RoomManager.State.NO_ONE)
         {
-            AudioManager.Instance.OpenDoor();
-            OpenDoor();
-            open = true;
+            //AudioManager.Instance.OpenDoor();
+            //OpenDoor();
+            //open = true;
         }
     }
 
@@ -41,11 +46,12 @@ public class DoorController : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
+
     public void OpenDoor() {      
-        transform.eulerAngles = new Vector3(0, -90);
+        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y - 90, 0);
     }
 
     public void CloseDoor() {
-        transform.eulerAngles = new Vector3(0, 0);
+        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + 90, 0);
     }
 }

@@ -39,6 +39,12 @@ public class PickableController : MonoBehaviour
         
 	}
 
+    private void OnDestroy() {
+        if(playerController != null) {
+            playerController.objectInHand = false;
+        }
+    }
+
     private void OnCollisionStay(Collision collision)
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Player") && 

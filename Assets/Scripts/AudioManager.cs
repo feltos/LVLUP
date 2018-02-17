@@ -40,37 +40,37 @@ public class AudioManager : MonoBehaviour
 
     public void OpenDoor()
     {
-        Debug.Log("openDoor");
+        Debug.Log("Audio manager: openDoor");
         MakeSound(openDoor);
     }
 
     public void CloseDoor()
     {
-        Debug.Log("closeDoor");
+        Debug.Log("Audio manager: closeDoor");
         MakeSound(closeDoor);
     }
 
     public void DallePresses()
     {
-        Debug.Log("DallePressed");
+        Debug.Log("Audio manager: DallePressed");
         MakeSound(dallePressed);
     }
 
     public void PickObject()
     {
-        Debug.Log("PickObject");
+        Debug.Log("Audio manager: PickObject");
         MakeSound(pickObject);
     }
 
     public void PickKey()
     {
-        Debug.Log("PickKey");
+        Debug.Log("Audio manager: PickKey");
         MakeSound(pickKey);
     }
 
     public void ButtonPress()
     {
-        Debug.Log("ButtonPress");
+        Debug.Log("Audio manager: ButtonPress");
         MakeSound(buttonPress);
     }
 }
