@@ -24,7 +24,7 @@ public class CameraController : MonoBehaviour {
     private void FixedUpdate() {
         Vector3 target = Vector3.Lerp(players[0].transform.position, players[1].transform.position, 0.5f);
 
-        transform.position = target + new Vector3(2.2f, 15, 10);
+        transform.position = target + new Vector3(0, 15, 7);
 
         if(shakeDuration <= 0) {
             originalPos = transform.localPosition;
