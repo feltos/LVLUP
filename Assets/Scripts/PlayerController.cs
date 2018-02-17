@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour
         animatorController.SetBool("LookDown", false);
         animatorController.SetBool("LookLeft", false);
         animatorController.SetBool("LookRight", false);
+
         if(horizontal == 0 && vertical == 0) {
             animatorController.SetBool("Idle", true);
         } else {
