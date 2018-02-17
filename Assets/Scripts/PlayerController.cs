@@ -30,7 +30,9 @@ public class PlayerController : MonoBehaviour
     bool textShownOnce = false;
     bool textHideOnce = false;
 
-	void Start ()
+    Animator animatorController;
+
+    void Start ()
     {
         Transform tmp = transform.Find("StartShock");
         if(tmp != null) {
@@ -39,12 +41,42 @@ public class PlayerController : MonoBehaviour
 
         body = GetComponent<Rigidbody>();
         spring = GetComponent<ConfigurableJoint>();
-	}
+
+        animatorController = GetComponent<Animator>();
+        if(animatorController == null) {
+            Debug.LogError("A Animatore is missing");
+        }
+    }
 	
 	void Update ()
     {
         horizontal = ControllersManager.Instance.GetAxis("Horizontal", playerIndex);
         vertical = ControllersManager.Instance.GetAxis("Vertical", playerIndex);
+        
+        //Animation
+        animatorController.SetBool("LookUp", false);
+        animatorController.SetBool("LookDown", false);
+        animatorController.SetBool("LookLeft", false);
+        animatorController.SetBool("LookRight", false);
+        if(horizontal == 0 && vertical == 0) {
+            animatorController.SetBool("Idle", true);
+        } else {
+            animatorController.SetBool("Idle", false);
+            if(Mathf.Abs(horizontal) < Mathf.Abs(vertical)) {
+                if(vertical > 0) {
+                    animatorController.SetBool("LookUp", true);
+                } else {
+                    animatorController.SetBool("LookDown", true);
+                }
+            } else {
+                if(horizontal < 0) {
+                    animatorController.SetBool("LookLeft", true);
+                } else {
+                    animatorController.SetBool("LookRight", true);
+                }
+            }
+        }
+
         movement = new Vector3(-horizontal * speed, 0, -vertical * speed);
 
         if(textShownOnce && !textHideOnce)
