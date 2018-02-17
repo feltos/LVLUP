@@ -22,9 +22,15 @@ public class GameManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
+    void Start() {
+        TimerController.Instance.SetTimeForLevel(300);
+    }
+
     // Update is called once per frame
     void Update () {
-		
+        if(TimerController.Instance.HasFinished()) {
+            Lose();
+        }
 	}
 
     public void Lose() {
