@@ -31,9 +31,30 @@ public class GameManager : MonoBehaviour {
         if(TimerController.Instance.HasFinished()) {
             Lose();
         }
-	}
+
+        if(SceneManager.GetActiveScene().name == "Menu" && ControllersManager.Instance.GetKeyDown("escape")) {
+            Debug.Log("Quitte");
+            Application.Quit();
+        }
+
+        if(SceneManager.GetActiveScene().name == "Credits" && ControllersManager.Instance.GetKeyDown("escape")) {
+            LoadScene("Menu");
+        }
+
+        if(SceneManager.GetActiveScene().name == "Lose" && ControllersManager.Instance.GetKeyDown("escape")) {
+            LoadScene("Menu");
+        }
+        if(SceneManager.GetActiveScene().name == "Win" && ControllersManager.Instance.GetKeyDown("escape")) {
+            LoadScene("Menu");
+        }
+
+    }
 
     public void Lose() {
         SceneManager.LoadScene("Lose");
+    }
+
+    public void LoadScene(string name) {
+        SceneManager.LoadScene(name);
     }
 }
