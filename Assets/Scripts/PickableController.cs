@@ -9,35 +9,51 @@ public class PickableController : MonoBehaviour
     float pickTimer;
     PlayerController playerController;
 
-	void Update ()
-    {
-		if(grabbed)
-        {
-            if(playerController.vertical < 0)
-            transform.position = player.transform.position + Vector3.forward;
+    Vector3 lastPositionPlayer;
 
-            if (playerController.vertical > 0)
-            transform.position = player.transform.position + Vector3.back;
+    void Update() {
+        if(grabbed) {
+            bool hasMoved = false; ;
+            if(playerController.vertical < 0) {
+                transform.position = player.transform.position + Vector3.forward;
+                hasMoved = true;
+            }
 
-            if (playerController.horizontal < 0)
-            transform.position = player.transform.position + Vector3.right;
+            if(playerController.vertical > 0) {
+                transform.position = player.transform.position + Vector3.back;
+                hasMoved = true;
+            }
 
-            if (playerController.horizontal > 0)
-            transform.position = player.transform.position + Vector3.left;
+            if(playerController.horizontal < 0) {
+                transform.position = player.transform.position + Vector3.right;
+                hasMoved = true;
+            }
 
-            gameObject.GetComponent<Rigidbody>().useGravity = false;
+            if(playerController.horizontal > 0) {
+                transform.position = player.transform.position + Vector3.left;
+                hasMoved = true;
+            }
+
+            if(!gameObject.name.Contains("Key")) {
+                gameObject.GetComponent<Rigidbody>().useGravity = false;
+            }
             pickTimer += Time.deltaTime;
+
+            if(!hasMoved) {
+                transform.position = player.transform.position + Vector3.forward;
+            }
         }
-        if(grabbed && ControllersManager.Instance.GetButtonDown("Fire1", playerController.GetPlayerIndex()) && pickTimer >= 0.1f)
-        {
+
+        if(grabbed && ControllersManager.Instance.GetButtonDown("Fire1", playerController.GetPlayerIndex()) && pickTimer >= 0.1f) {
             gameObject.GetComponent<BoxCollider>().isTrigger = false;
             pickTimer = 0;
-            gameObject.GetComponent<Rigidbody>().useGravity = true;
+            if(!gameObject.name.Contains("Key")) {
+                gameObject.GetComponent<Rigidbody>().useGravity = true;
+            }
             playerController.objectInHand = false;
             grabbed = false;
         }
-        
-	}
+    }
 
     private void OnDestroy() {
         if(playerController != null) {
