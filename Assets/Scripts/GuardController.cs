@@ -40,7 +40,7 @@ public class GuardController : MonoBehaviour {
              new Vector3(waypoints[indexOfTarget].position.x, transform.position.y, waypoints[indexOfTarget].position.z), speed * Time.deltaTime);
 
         
-        sprite.transform.eulerAngles = new Vector3(0, 0, 0);
+        sprite.transform.eulerAngles = new Vector3(-45, 0, 0);
 
         //Animation
         animatorController.SetBool("LookUp", false);
