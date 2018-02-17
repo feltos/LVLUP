@@ -35,7 +35,7 @@ public class GuardController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		if(Vector3.Distance(transform.position, waypoints[indexOfTarget].position) <= 2) {
+		if(Vector3.Distance(transform.position, waypoints[indexOfTarget].position) <= 1) {
             indexOfTarget++;
             if(indexOfTarget >= waypoints.Count) {
                 indexOfTarget = 0;
