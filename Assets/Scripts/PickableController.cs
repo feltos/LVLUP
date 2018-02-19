@@ -63,6 +63,7 @@ public class PickableController : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
+
         if(collision.gameObject.layer == LayerMask.NameToLayer("Player") && 
             ControllersManager.Instance.GetButtonDown("Fire1", collision.gameObject.GetComponent<PlayerController>().GetPlayerIndex()) && 
             collision.gameObject.GetComponent<PlayerController>().objectInHand == false)
@@ -71,11 +72,13 @@ public class PickableController : MonoBehaviour
             {
                 AudioManager.Instance.PickKey();
             }
+
             playerController = collision.gameObject.GetComponent<PlayerController>();
             player = collision.gameObject.transform;
             gameObject.GetComponent<BoxCollider>().isTrigger = true;
             collision.gameObject.GetComponent<PlayerController>().objectInHand = true;
             AudioManager.Instance.PickObject();
+            
             grabbed = true;
         }
     }

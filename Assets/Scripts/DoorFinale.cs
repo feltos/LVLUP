@@ -36,5 +36,7 @@ public class DoorFinale : MonoBehaviour {
 
     public void OpenDoor() {
         transform.eulerAngles = new Vector3(0, transform.eulerAngles.y - 90, 0);
+
+        GameManager.Instance.LoadScene("Win");
     }
 }

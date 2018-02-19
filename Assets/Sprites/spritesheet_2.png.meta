@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 37cf23443dea4bc43977710cd5e2d7f3
-timeCreated: 1518861824
+timeCreated: 1518874783
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -462,7 +462,7 @@ TextureImporter:
       name: spritesheet_2_25
       rect:
         serializedVersion: 2
-        x: 1234
+        x: 1235
         y: 451
         width: 90
         height: 145
@@ -476,7 +476,7 @@ TextureImporter:
       name: spritesheet_2_26
       rect:
         serializedVersion: 2
-        x: 1398
+        x: 1399
         y: 451
         width: 90
         height: 145
